@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Simple Form</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Form</h2>
+
+      <form onsubmit="submitForm(event)">
+        <input class="b" type="text" id="name" placeholder="Enter name" />
+        <p id="nameErr"></p>
+
+        <input class="b" type="email" id="email" placeholder="Enter email" />
+        <p id="emailErr"></p>
+
+        <input
+          class="b"
+          type="password"
+          id="password"
+          placeholder="Enter password"
+        />
+        <p id="passErr"></p>
+
+        <label>Date of Birth</label>
+        <input class="b" type="date" id="dob" />
+        <p id="dobErr"></p>
+
+        <p id="finalErr"></p>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      function submitForm(e) {
+        e.preventDefault();
+
+        let isValid = true;
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const dob = document.getElementById("dob").value;
+
+        if (name === "") {
+          document.getElementById("nameErr").innerText = "Name is required";
+          isValid = false;
+        } else {
+          document.getElementById("nameErr").innerText = "";
+        }
+        if (email === "") {
+          document.getElementById("emailErr").innerText = "Email is required";
+          isValid = false;
+        } else {
+          document.getElementById("emailErr").innerText = "";
+        }
+
+        if (password.length < 6) {
+          document.getElementById("passErr").innerText =
+            "Password must be at least 6 characters";
+          isValid = false;
+        } else {
+          document.getElementById("passErr").innerText = "";
+        }
+
+        if (dob === "") {
+          document.getElementById("dobErr").innerText =
+            "Date of birth is required";
+          isValid = false;
+        } else {
+          document.getElementById("dobErr").innerText = "";
+        }
+
+        if (!isValid) {
+          document.getElementById("finalErr").innerText =
+            "Please fill all fields correctly ";
+          return;
+        }
+
+        document.getElementById("finalErr").innerText = "";
+
+        alert("Form Submitted Successfully");
+
+        e.target.submit();
+      }
+    </script>
+  </body>
+</html>
